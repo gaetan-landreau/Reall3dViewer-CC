@@ -8,12 +8,23 @@ import { Reall3dViewer } from './reall3d/viewer/Reall3dViewer';
 import { Reall3dViewerOptions } from './reall3d/viewer/Reall3dViewerOptions';
 import { Reall3dMapViewer } from './reall3d/mapviewer/Reall3dMapViewer';
 
+import { getCarProperties } from './reall3d/cars/CarProperties';
+
 const params: URLSearchParams = new URLSearchParams(location.search);
 let url = params.get('url');
 const debugMode = !!params.get('debug');
 
+const customScenePath = './assets/vanilla_scene.ply';
+
 const maxRenderCountOfPc = 384 * 10000;
 const shDegree = 3;
+
+// Read the .json file and extract car properties to: 
+    // - Setup the look at direction to the car center. 
+    // re
+const carProperties = await getCarProperties();
+
+console.log('CarProperties', carProperties);
 
 let viewer: Reall3dViewer;
 let mapViewer: Reall3dMapViewer;
@@ -22,8 +33,23 @@ if (url) {
     viewer.addModel(url);
     debugMode && initDevMode(true);
 } else {
-    viewer = new Reall3dViewer({ debugMode: true, maxRenderCountOfPc, shDegree });
-    viewer.addModel(`https://reall3d.com/demo-models/hornedlizard.spx`);
+    viewer = new Reall3dViewer({
+        debugMode: true,
+        maxRenderCountOfPc: maxRenderCountOfPc,
+        shDegree: shDegree,
+        autoRotate: false,
+        enableRotate: true,
+        enableZoom: true,
+        fov: 45,
+        minDistance: 3,
+        maxDistance: 3.5,
+        minPolarAngle: Math.PI * 0.45,
+        maxPolarAngle: Math.PI * 0.51,
+        lookUp: carProperties.lookup_vector, // that's the Y-axis from the orthonormal matrix.
+        lookAt:carProperties.car_center,   // that's the computed car center. 
+        position:carProperties.cam_location_init ,  // that the stabilized cam. position for the angle 180°
+    });
+    viewer.addModel(customScenePath);
 
     initDevMode();
 }

@@ -26,9 +26,17 @@
                                 fill: url(#aa);
                             }
 
-                            .cls-2 {
-                                fill: url(#bb);
-                            }
+<body style="background: black;height: 100vh;margin: 0px;overflow: hidden;">
+	<div id="gsviewer">
+		<div class="logo loading" onclick="window.open('https://www.car-cutter.com/', '_blank');"
+			style="position: absolute;top: 30px;left: 20px; width: 40px;height: 40px;z-index:9999;cursor: pointer;">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				viewBox="0 0 218.18 216.86">
+				<defs>
+					<style>
+						.cls-1 {
+							fill: url(#aa);
+						}
 
                             .cls-3 {
                                 fill: url(#cc);
@@ -230,38 +238,34 @@
 							title="Large scene rendering based on LOD">大场景LOD</span>
 					</td>
 				</tr> -->
-                    <tr class="tr-data tr-pc-only">
-                        <td>----- marks -----</td>
-                    </tr>
-                    <tr class="tr-data tr-pc-only">
-                        <td>
-                            <span class="mark-hide" title="Hide marks">隐</span>　<span class="mark-show" title="Show marks">显</span>　<span
-                                class="mark-save"
-                                title="Save marks"
-                                >存</span
-                            >　<span class="mark-del" title="Delete marks">删</span>
-                        </td>
-                    </tr>
-                    <tr class="tr-data tr-pc-only">
-                        <td>
-                            <span class="mark-distance" title="mark distance">长</span> <span class="mark-point" title="mark point">点</span>
-                            <span class="mark-lines" title="mark lines">线</span> <span class="mark-plans" title="mark plans">面</span>
-                            <span class="mark-circle" title="mark circle">圆</span>
-                        </td>
-                    </tr>
-                    <tr class="tr-data tr-pc-only">
-                        <td>----- flying -----</td>
-                    </tr>
-                    <tr class="tr-data tr-pc-only">
-                        <td>
-                            <span class="add-pos" title="Add the current camera position as one of the flight path points">加点</span>
-                            <span class="clear-pos" title="Clear the flight path points">清空</span> <span class="fly" title="Start flying">飞</span>
-                            <span class="fly-save" title="Save the flight path points">存</span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <script type="module" src="./src/index.ts"></script>
-    </body>
+				<tr class="tr-data tr-pc-only">
+					<td>----- marks -----</td>
+				</tr>
+				<tr class="tr-data tr-pc-only">
+					<td><span class="mark-hide" title="Hide marks">隐</span>　<span class="mark-show"
+							title="Show marks">显</span>　<span class="mark-save" title="Save marks">存</span>　<span
+							class="mark-del" title="Delete marks">删</span></td>
+				</tr>
+				<tr class="tr-data tr-pc-only">
+					<td><span class="mark-distance" title="mark distance">长</span> <span class="mark-point"
+							title="mark point">点</span> <span class="mark-lines" title="mark lines">线</span> <span
+							class="mark-plans" title="mark plans">面</span> <span class="mark-circle"
+							title="mark circle">圆</span></td>
+				</tr>
+				<tr class="tr-data tr-pc-only">
+					<td>----- flying -----</td>
+				</tr>
+				<tr class="tr-data tr-pc-only">
+					<td><span class="add-pos"
+							title="Add the current camera position as one of the flight path points">加点</span> <span
+							class="clear-pos" title="Clear the flight path points">清空</span> <span class="fly"
+							title="Start flying">飞</span> <span class="fly-save"
+							title="Save the flight path points">存</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script type="module" src="./src/index.ts"></script>
+</body>
+
 </html>

@@ -42,8 +42,8 @@ export class MarkSinglePoint extends Group {
                 mainTagColor: '#c4c4c4',
                 mainTagBackground: '#2E2E30',
                 mainTagOpacity: 0.8,
-                title: '标记点' + cnt,
-                note: '',
+                title: 'hotspot:' + cnt,
+                note: 'This is a test. ',
             };
         } else {
             data = {
