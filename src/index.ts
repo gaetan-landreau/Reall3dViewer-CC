@@ -45,7 +45,7 @@ if (url) {
         maxDistance: 3.5,
         minPolarAngle: Math.PI * 0.45,
         maxPolarAngle: Math.PI * 0.51,
-        lookUp: carProperties.lookup_vector, // that's the Y-axis from the orthonormal matrix.
+        lookUp: carProperties.look_up, // that's the Y-axis from the orthonormal matrix.
         lookAt:carProperties.car_center,   // that's the computed car center. 
         position:carProperties.cam_location_init ,  // that the stabilized cam. position for the angle 180°
     });

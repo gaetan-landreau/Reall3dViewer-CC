@@ -4,7 +4,7 @@ import * as path from 'path';
 // Define an interface for the expected structure of the car properties
 interface CarPropertyValues {
     car_center?: number[]; 
-    lookup_vector?: number[]; 
+    look_up?: number[]; 
     cam_location_init?: number[]; 
     [key: string]: any; // Allow other keys if necessary, or remove if strictly these three
 }
@@ -17,12 +17,12 @@ interface CarPropertyValues {
 
 
 export async function getCarProperties(sceneID: string): Promise<CarPropertyValues> {
-    const carPropertiesJson = await import(`../../../assets/${sceneID}/car_info_viewer.json`);
-    const { car_center, orthonormal_matrix, cam_location_init } = carPropertiesJson.default;
+    const carPropertiesJson = await import(`../../../assets/${sceneID}/car_metadata_viewer.json`);
+    const { look_at, look_up, init_camera_position } = carPropertiesJson.default;
 
     return {
-        car_center: car_center,
-        lookup_vector: orthonormal_matrix[1],
-        cam_location_init: cam_location_init
+        car_center: look_at,
+        look_up: look_up,
+        cam_location_init: init_camera_position
     };
 }
