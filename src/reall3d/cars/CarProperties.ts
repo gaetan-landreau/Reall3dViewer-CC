@@ -15,14 +15,14 @@ interface CarPropertyValues {
  * @returns A promise that resolves with an object containing the specified car properties, or rejects with an error.
  */
 
-import carPropertiesJson from '../../../assets/car_pose_info.json';
 
-export async function getCarProperties(): Promise<CarPropertyValues> {
-    const { car_center, orthonormal_matrix, cam_location_init } = carPropertiesJson;
+export async function getCarProperties(sceneID: string): Promise<CarPropertyValues> {
+    const carPropertiesJson = await import(`../../../assets/${sceneID}/car_info_viewer.json`);
+    const { car_center, orthonormal_matrix, cam_location_init } = carPropertiesJson.default;
 
     return {
-        car_center,
+        car_center: car_center,
         lookup_vector: orthonormal_matrix[1],
-        cam_location_init
+        cam_location_init: cam_location_init
     };
 }

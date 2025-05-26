@@ -14,15 +14,15 @@ const params: URLSearchParams = new URLSearchParams(location.search);
 let url = params.get('url');
 const debugMode = !!params.get('debug');
 
-const customScenePath = './assets/vanilla_scene.ply';
-
+const sceneID = "1C6SRFJM6MN836124_9CD678EF8C67";
+const customScenePath = `/assets/${sceneID}/vanilla_scene.spz`;
 const maxRenderCountOfPc = 384 * 10000;
 const shDegree = 3;
 
 // Read the .json file and extract car properties to: 
     // - Setup the look at direction to the car center. 
-    // re
-const carProperties = await getCarProperties();
+    // 
+const carProperties = await getCarProperties(sceneID);
 
 console.log('CarProperties', carProperties);
 
