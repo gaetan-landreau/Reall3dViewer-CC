@@ -103,14 +103,14 @@ export function initGsViewerOptions(options: Reall3dViewerOptions): Reall3dViewe
     opts.lookAt = opts.lookAt ? [...opts.lookAt] : [0, 0, 0];
     opts.lookUp = opts.lookUp ? [...opts.lookUp] : [0, -1, 0];
     opts.fov ??= 45;
-    opts.near ??= 0.001;
+    opts.near ??= 0.1;
     opts.far ??= 1000;
     opts.enableDamping ??= true;
     opts.autoRotate ??= true;
     opts.enableZoom ??= true;
     opts.enableRotate ??= true;
     opts.enablePan ??= true;
-    opts.enableKeyboard ??= true;
+    opts.enableKeyboard ??= false;
     opts.bigSceneMode ??= false;
     opts.pointcloudMode ??= !opts.bigSceneMode; // 小场景默认点云模式，大场景默认正常模式
     opts.lightFactor ??= 1.1;
