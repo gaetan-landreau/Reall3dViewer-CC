@@ -25,11 +25,6 @@
 - [x] Support 1st to 3nd degree spherical harmonics
 - [x] Supports rendering models within maps
 
-
-## Live demo
-- https://reall3d.com/reall3dviewer/index.html
-
-
 ## `.spx`
 
 - Format Specification: https://github.com/reall3d-com/Reall3dViewer/blob/main/SPX_EN.md
@@ -54,9 +49,6 @@ gsbox p2x -i /path/to/input.ply -o /path/to/output.spx -sh 0
 - Continuously optimize and enhance rendering performance
 - Large scene
 
-## Release History
-https://github.com/reall3d-com/Reall3dViewer/releases
-
 
 ## Acknowledgments
 We would like to express our gratitude to the following projects for their valuable reference implementations
@@ -65,9 +57,3 @@ We would like to express our gratitude to the following projects for their valua
 - https://github.com/huggingface/gsplat.js
 - https://github.com/playcanvas/supersplat
 - https://github.com/sxguojf/three-tile
-
-
-## Contact
-Feel free to submit an issue on the project page. Our commercial version offers a 3DGS model format optimization tool and supports embedding watermarks to protect model ownership. Please don't hesitate to contact us.
-- Site: https://reall3d.com
-- Email: ai@geohold.com 
