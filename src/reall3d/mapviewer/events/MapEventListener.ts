@@ -18,12 +18,14 @@ import {
     GetCameraPosition,
     GetCameraLookAt,
     MapSplatMeshMoveY,
+    GetOptions,
 } from '../../events/EventConstants';
 import { SplatMesh } from '../../meshs/splatmesh/SplatMesh';
 import { MarkDistanceLine } from '../../meshs/mark/MarkDistanceLine';
 import { MarkMultiLines } from '../../meshs/mark/MarkMultiLines';
 import { MarkMultiPlans } from '../../meshs/mark/MarkMulitPlans';
 import { MarkCirclePlan } from '../../meshs/mark/MarkCirclePlan';
+import { Reall3dMapViewerOptions } from '../Reall3dMapViewerOptions';
 
 class MouseState {
     public down: number = 0;
@@ -51,6 +53,9 @@ export function setupMapEventListener(events: Events) {
 
     on(KeyActionCheckAndExecute, () => {
         if (!keySet.size) return;
+
+        const opts: Reall3dMapViewerOptions = fire(GetOptions);
+        if (!opts.enableKeyboard) return keySet.clear();
 
         // if (opts.markMode && keySet.has('Escape')) {
         //     fire(CancelCurrentMark);

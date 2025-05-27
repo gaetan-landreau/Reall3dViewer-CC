@@ -238,10 +238,11 @@ export function initMapViewerOptions(options: Reall3dMapViewerOptions): Reall3dM
     if (!root) {
         root = document.createElement('div');
         root.id = 'map';
-        document.querySelector('#gsviewer').appendChild(root);
+        (document.querySelector('#gsviewer') || document.querySelector('body')).appendChild(root);
     }
 
-    const opts: Reall3dMapViewerOptions = { root, debugMode };
+    const opts: Reall3dMapViewerOptions = { ...options };
+    opts.root = root;
     return opts;
 }
 

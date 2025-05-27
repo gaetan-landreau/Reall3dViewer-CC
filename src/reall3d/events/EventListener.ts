@@ -519,13 +519,17 @@ export function setupEventListener(events: Events) {
     canvas.addEventListener('touchend', canvasTouchendEventListener, { passive: false });
 
     window.addEventListener('resize', resize);
+    resize();
     function resize() {
-        const { width, height } = fire(GetCanvasSize);
+        const { width, height, top, left } = fire(GetCanvasSize);
         const camera: PerspectiveCamera = fire(GetCamera);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         const cSS3DRenderer: CSS3DRenderer = fire(GetCSS3DRenderer);
         cSS3DRenderer.setSize(width, height);
+        cSS3DRenderer.domElement.style.position = 'absolute';
+        cSS3DRenderer.domElement.style.left = `${left}px`;
+        cSS3DRenderer.domElement.style.top = `${top}px`;
         const renderer = fire(GetRenderer);
         renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
         renderer.setSize(width, height);

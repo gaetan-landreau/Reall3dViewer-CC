@@ -81,7 +81,6 @@ export class Reall3dMapViewer extends EventDispatcher<tt.plugin.GLViewerEventMap
         setupApi(events);
         setupMapUtils(events);
         setupRaycaster(events);
-        setupMark(events);
 
         that.camera = new PerspectiveCamera(60, 1, 0.01, 10000);
         on(GetCamera, () => that.camera);
@@ -96,11 +95,13 @@ export class Reall3dMapViewer extends EventDispatcher<tt.plugin.GLViewerEventMap
         that.scene.add(that.dirLight);
         that.scene.add(that.tileMap);
         that.container.appendChild(that.renderer.domElement);
+
+        setupMark(events);
+        setupMapEventListener(events);
+
         window.addEventListener('resize', that.resize.bind(that));
         that.resize();
         that.renderer.setAnimationLoop(that.animate.bind(that));
-
-        setupMapEventListener(events);
 
         on(ViewerDispose, () => that.dispose());
 
@@ -178,14 +179,16 @@ export class Reall3dMapViewer extends EventDispatcher<tt.plugin.GLViewerEventMap
     private resize() {
         const that = this;
         if (that.disposed) return;
-        const width = that.container.clientWidth;
-        const height = that.container.clientHeight;
+        const { width, height, top, left } = that.container.getBoundingClientRect();
         that.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
         that.renderer.setSize(width, height);
         that.camera.aspect = width / height;
         that.camera.updateProjectionMatrix();
         const cSS3DRenderer: CSS3DRenderer = that.events.fire(GetCSS3DRenderer);
         cSS3DRenderer.setSize(width, height);
+        cSS3DRenderer.domElement.style.position = 'absolute';
+        cSS3DRenderer.domElement.style.left = `${left}px`;
+        cSS3DRenderer.domElement.style.top = `${top}px`;
     }
 
     private animate() {

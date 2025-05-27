@@ -2,7 +2,7 @@
 // Copyright (c) 2025 reall3d.com, MIT license
 // ==============================================
 import '../style/style.less';
-import { Scene, AmbientLight, WebGLRenderer } from 'three';
+import { Scene, AmbientLight, WebGLRenderer, Color } from 'three';
 import {
     GetCurrentDisplayShDegree,
     GetModelShDegree,
@@ -103,6 +103,8 @@ export class Reall3dViewer {
 
         const renderer: WebGLRenderer = initRenderer(opts);
         const scene: Scene = (opts.scene = opts.scene || new Scene());
+        scene.background = new Color(opts.background);
+
         initCamera(opts);
         const controls = (opts.controls = new CameraControls(opts));
         controls.updateByOptions(opts);
@@ -535,6 +537,9 @@ export class Reall3dViewer {
         that.disposed = true;
         const fire = (key: number, ...args: any): any => that.events.fire(key, ...args);
 
+        const renderer: WebGLRenderer = fire(GetRenderer);
+        const canvas = renderer.domElement as HTMLCanvasElement;
+
         fire(CommonUtilsDispose);
         fire(ViewerUtilsDispose);
         fire(CSS3DRendererDispose);
@@ -543,10 +548,10 @@ export class Reall3dViewer {
 
         fire(TraverseDisposeAndClear, fire(GetScene));
 
-        const renderer: WebGLRenderer = fire(GetRenderer);
         renderer.clear();
         renderer.dispose();
 
+        canvas.parentElement.removeChild(canvas);
         that.splatMesh = null;
         that.events.clear();
         that.events = null;

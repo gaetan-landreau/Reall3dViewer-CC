@@ -120,6 +120,7 @@ export function initGsViewerOptions(options: Reall3dViewerOptions): Reall3dViewe
     opts.markMode ??= false;
     opts.markVisible ??= true;
     opts.meterScale ??= 1;
+    opts.background ??= '#000000';
 
     return opts;
 }
@@ -137,10 +138,9 @@ export function initRenderer(opts: Reall3dViewerOptions): WebGLRenderer {
         document.body.appendChild(root);
     }
 
-    let canvas: HTMLCanvasElement = document.querySelector('#gsviewer-canvas') || undefined;
     let renderer = null;
     if (!opts.renderer) {
-        renderer = new WebGLRenderer({ canvas, antialias: false, stencil: true, logarithmicDepthBuffer: true, precision: 'highp' });
+        renderer = new WebGLRenderer({ antialias: false, stencil: true, logarithmicDepthBuffer: true, precision: 'highp' });
         renderer.setSize(root.clientWidth, root.clientHeight);
         renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
         opts.renderer = renderer;
@@ -148,8 +148,8 @@ export function initRenderer(opts: Reall3dViewerOptions): WebGLRenderer {
         renderer = opts.renderer;
     }
 
-    canvas = renderer.domElement;
-    canvas.id = 'gsviewer-canvas';
+    const canvas = renderer.domElement;
+    canvas.classList.add('gsviewer-canvas');
     root.appendChild(renderer.domElement);
     return renderer;
 }
